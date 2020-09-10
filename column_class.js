@@ -1,5 +1,6 @@
 class Column {
-    constructor() {
+    constructor(name) {
+        this.name = name;
         this.rows = [];
     }
     checkColumnFull() {
@@ -8,8 +9,8 @@ class Column {
 
         }
     }
-    addToken() {
-        this.rows.push(0);
+    addToken(color) {
+        this.rows.push(color);
     }
 }
 
