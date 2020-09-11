@@ -1,19 +1,45 @@
 import { Player } from './player_class.js';
 import { Column } from './column_class.js';
-
+import { Game } from './game-classes.js';
 let game = undefined;
+function updateUI(game){
+    let board = document.getElementById("board-holder")
+    if(game === undefined){
+        board.classList.add("is-invisible")
+    } else {
+        board.classList.remove("is-invisible")
+    }
+    document.getElementById("game-name").innerHTML = game.getName()
+}
 
 window.addEventListener("DOMContentLoaded", () => {
     let player1 = document.getElementById("player-1-name")
     let player2 = document.getElementById("player-2-name")
-    console.log(player1.value)
 
+
+    let newGameBtn = document.getElementById("new-game")
 player1.addEventListener("keyup", event =>{
-let newGameBtn = document.getElementById("new-game")
-if(player1.value && player2.value){
+if(player1.value.length > 0 && player2.value.length > 0){
     newGameBtn.removeAttribute("disabled");
 }
+});
+player2.addEventListener("keyup", event =>{
+    if(player1.value.length > 0 && player2.value.length > 0){
+        newGameBtn.removeAttribute("disabled");
+    }
+
+});
+
+newGameBtn.addEventListener("click", event =>{
+    game = new Game (player1.value, player2.value);
+    updateUI(game)
+
 })
+
+
+
+
+
 
 const column0 = new Column("0");
 const column1 = new Column("1");
@@ -21,7 +47,8 @@ const column2 = new Column("2");
 const column3 = new Column("3");
 const column4 = new Column("4");
 const column5 = new Column("5");
-let instanceArr = [column0,column1, column2, column3, column4, column5]
+const column6 = new Column("6");
+let instanceArr = [column0,column1, column2, column3, column4, column5, column6]
 
 let counter = 0;
 document.getElementById('click-targets').addEventListener('click', event => {
