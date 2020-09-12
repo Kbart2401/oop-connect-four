@@ -4,8 +4,8 @@
     //check if someone has won or not after each turn
     //click New Game starts game
 
-    class GameStatus {
-        constructor() {
-            this.
-        }
-    }
+    // class GameStatus {
+    //     constructor() {
+    //         this.
+
+    // }

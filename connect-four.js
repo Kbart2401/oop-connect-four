@@ -1,6 +1,6 @@
-import { Player } from './player_class.js';
-import { Column } from './column_class.js';
-import { Game } from './game-classes.js';
+import  Player  from './player_class.js';
+import Column from './column_class.js';
+import Game from './game_classes.js';
 
 ////////////GLOBAL VARIABLES////////////////
 let game = undefined;
@@ -48,13 +48,21 @@ player2.addEventListener("keyup", event =>{
 
 newGameBtn.addEventListener("click", event =>{
     game = new Game (player1.value, player2.value);
+    console.log()
     updateUI(game)
 
 })
 
 document.getElementById('click-targets').addEventListener('click', event => {
-    game.playInColumn();
-    updateUI(game);
+    let clickCol = event.target.id;
+    if(clickCol.startsWith("column")){
+   let colNum =  Number.parseInt(clickCol[clickCol.length - 1])
+
+   game.playInColumn(colNum);
+   updateUI(game);
+    }
+
+
 })
 
 
